@@ -1,7 +1,13 @@
 import React, {Component} from 'react';
 import '../styles/App.scss';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Button } from 'react-bootstrap';
+import {
+  Route,
+  Switch,
+  Redirect
+} from 'react-router-dom';
+import Container from 'react-bootstrap/Container'
+import Login from "../components/login";
 
 class App extends Component {
   constructor(props) {
@@ -10,11 +16,15 @@ class App extends Component {
 
   render() {
     return (
-      <div>
-        <div className="content">
-         <span id="vibha">Hello world</span>
-          <Button variant="outline-primary">Primary</Button>
-        </div>
+      <div className="app">
+        <Container>
+          <div className="content">
+            <Switch>
+              <Route path="/" component={Login}/>
+              <Redirect to="/"/>
+            </Switch>
+          </div>
+        </Container>
       </div>
     );
   }
