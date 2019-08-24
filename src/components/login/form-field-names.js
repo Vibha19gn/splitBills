@@ -1,7 +1,7 @@
-export const EMAIL = "email";
+export const USER_NAME = "userName";
 export const PASSWORD = "password";
 
 export default {
-  EMAIL,
+  USER_NAME,
   PASSWORD
 };

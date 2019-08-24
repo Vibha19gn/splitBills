@@ -1,9 +1,18 @@
-import  * as config from "./config";
+import * as storageUtils from "../../common/storage";
 
-export const authenticateUser = (email, password) => {
-  const users = JSON.parse(localStorage.getItem(config.USERS));
-  const auth = users.find((user) => {
-     return user.email == email && user.password == password;
+export const authenticateUser = (userName, password) => {
+  const users = storageUtils.getAllUsers();
+  const auth = users.some((user) => {
+    return user.userName === userName && user.password === password;
   });
   return auth ? true : false;
+};
+
+export const getRequiredDataFromStorage = (userName) => {
+  const expenses = storageUtils.getDataByUserName(storageUtils.EXPENSES, userName);
+  const friends = storageUtils.getDataByUserName(storageUtils.FRIENDS, userName);
+  return {
+    expenses,
+    friends
+  }
 }

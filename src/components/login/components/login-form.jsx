@@ -2,14 +2,14 @@ import React, {Component} from 'react';
 import PropTypes from "prop-types";
 import Form from "react-bootstrap/Form"
 import Button from "react-bootstrap/Button"
-import FormFieldName from "../form-field-names";
+import FormFieldName, {USER_NAME} from "../form-field-names";
 import MessageBar from "../../../common/message-bar";
 
 class LoginForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      [FormFieldName.EMAIL]: "",
+      [FormFieldName.USER_NAME]: "",
       [FormFieldName.PASSWORD]: "",
     };
     this.handleOnChange = this.handleOnChange.bind(this);
@@ -40,7 +40,7 @@ class LoginForm extends Component {
         {
           isLoggedIn === false &&
           <MessageBar
-            message="Email or password is invalid"/>
+            message="User name or password is invalid"/>
         }
         <Form.Group>
           <Form.Label>
@@ -48,8 +48,8 @@ class LoginForm extends Component {
           </Form.Label>
           <Form.Control
             required
-            placeholder="Enter email"
-            onChange={this.handleOnChange.bind(this, FormFieldName.EMAIL)}/>
+            placeholder="Enter User name"
+            onChange={this.handleOnChange.bind(this, FormFieldName.USER_NAME)}/>
         </Form.Group>
         <Form.Group>
           <Form.Label>
@@ -58,7 +58,7 @@ class LoginForm extends Component {
           <Form.Control
             required
             type="password"
-            placeholder="Password"
+            placeholder="Enter Password"
             onChange={this.handleOnChange.bind(this, FormFieldName.PASSWORD)}/>
         </Form.Group>
         <Button

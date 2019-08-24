@@ -1,0 +1,5 @@
+export const ADD_FRIEND_SUCCESS =
+  "ADD_FRIEND_SUCCESS";
+
+ export const ADD_FRIEND_FAILURE =
+   "ADD_FRIEND_FAILURE";
