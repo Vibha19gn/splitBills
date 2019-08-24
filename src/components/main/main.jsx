@@ -3,15 +3,15 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import {AddFriend, Friends} from "../friends";
 import {AddExpense, Expenses} from "../expenses";
-import {Redirect, Link, Route, Switch} from "react-router-dom";
+import {Redirect, NavLink, Route, Switch} from "react-router-dom";
 
 const Main = (props) => {
   return (
     <Row>
       <Col sm={3}>
         <ul>
-          <li><Link to="/expense">Expenses</Link></li>
-          <li><Link to="/friends">Friends</Link></li>
+          <li><NavLink to="/expense">Expenses</NavLink></li>
+          <li><NavLink to="/friends">Friends</NavLink></li>
         </ul>
       </Col>
       <Col sm={6}>

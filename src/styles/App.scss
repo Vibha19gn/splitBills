@@ -3,6 +3,9 @@ $color-grey: #ced4da;
 html {
   min-height: 100px;
 }
+ul li {
+  list-style: none;
+}
 
 .login {
     width: 30%;
