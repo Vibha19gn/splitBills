@@ -13,9 +13,12 @@ const FormField = (props) => {
 
   return (
     <Form.Group>
-      <Form.Label>
-        {label}
-      </Form.Label>
+      {
+        label &&
+        <Form.Label>
+          {label}
+        </Form.Label>
+      }
       <Form.Control
         required
         name={name}

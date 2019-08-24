@@ -2,23 +2,27 @@ import React, {useState, useEffect} from 'react';
 import PropTypes from "prop-types";
 import ModalDialog from "../../../common/modal";
 import FormField from "../../../common/form-field";
-import ListGroup from 'react-bootstrap/ListGroup';
+import AutoSuggest from "../../../common/auto-suggest";
 
 const ExpenseModal = (props) => {
   const {
     show,
     handleOnClose,
-    currentExpense
+    currentExpense,
+    friendsOfUser
   } = props;
   console.log("currentExpense =", currentExpense);
   let initialFormState = {id: "", title: "", amount: ""};
   let initialFriends = [];
+  const [allFriends, setAllFriends] = useState([]);
+  const [mode, setMode] = useState("Add");
   const [expense, setExpense] = useState(initialFormState);
   const [friends, setFriends] = useState(initialFriends);
-  const [mode, setMode] = useState("Add");
+
 
   useEffect(
     () => {
+      setAllFriends([...friendsOfUser]);
       if(currentExpense) {
         const {
           title,
@@ -26,7 +30,8 @@ const ExpenseModal = (props) => {
           friends,
           id
         } = currentExpense;
-        setMode("Edit")
+
+        setMode("Edit");
         setExpense({...{id: id, title: title, amount: amount}});
         setFriends([...friends]);
       }
@@ -34,26 +39,15 @@ const ExpenseModal = (props) => {
     [ props ]
   );
 
-  const friendsList = [
-    {
-      "id": "_qt5f29l9u",
-      "name": "deepa"
-    },
-    {
-      "id": "_alwukbpo4",
-      "name": "ramya"
-    },
-    {
-      "id": "_lqmdv87ll",
-      "name": "nayana"
-    },
-  ];
-
-  const handleOnClick = (e) => {
-    console.log("listss123==", e, e.target);
-    console.log("listss==", e.target.getAttribute("id"), e.target.innerHTML);
-    friends.push({ "id" : e.target.getAttribute("id"), "name": e.target.innerHTML});
-    setFriends([...friends]);
+  const handleOnClick = (friend) => {
+    console.log("friend== handleOnClick", friend);
+    const exists = friends.some((frnd) => {
+      return frnd.id === friend.id;
+    });
+    if(!exists) {
+      friends.push(friend);
+      setFriends([...friends]);
+    }
   }
 
 
@@ -79,19 +73,6 @@ const ExpenseModal = (props) => {
     } = props;
     submitRequest(expense, friends, mode);
     handleOnClose();
-  }
-
-  const renderFriendsList = () => {
-    return friendsList.map((friend) => {
-      return   (
-        <li
-          key={friend.id}
-          id={friend.id}
-          onClick={handleOnClick}>
-          {friend.name}
-        </li>
-      );
-    });
   }
 
   const manageAmount = () => {
@@ -153,9 +134,11 @@ const ExpenseModal = (props) => {
           placeholder="Add Amount"
           handleOnChange={handleOnChange}
         />
-        <ul className="selectFriends">
-          {renderFriendsList()}
-        </ul>
+        <AutoSuggest
+          items={allFriends}
+          useProp="name"
+          handleOnClick={handleOnClick}
+        />
         {renderSelectedFriendsList()}
       </ModalDialog>
   );
