@@ -16,16 +16,12 @@ class App extends Component {
 
   render() {
     return (
-      <div className="app">
-        <Container>
-          <div className="content">
-            <Switch>
-              <Route path="/" component={Login}/>
-              <Redirect to="/"/>
-            </Switch>
-          </div>
-        </Container>
-      </div>
+      <Container>
+          <Switch>
+            <Route path="/" component={Login}/>
+            <Redirect to="/"/>
+          </Switch>
+      </Container>
     );
   }
 }

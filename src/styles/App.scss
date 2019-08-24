@@ -1,14 +1,31 @@
+$color-grey: #ced4da;
+
 html {
   min-height: 100px;
 }
 
-body {
-  background-color: #F5F5F5;
-  margin: 0;
-  padding: 0;
-  font-size: 1em;
+.login {
+    width: 30%;
+    transform: translate(-50%, -50%);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+  .logo {
+    font-size: 25px;
+    font-style: italic;
+  }
+  .login-form {
+    border: 1px solid $color-grey;
+    padding: 25px;
+    border-radius: 5px;
+  }
 }
-#vibha {
-  color:red;
-  font-style: italic;
-}
+
+//.flex-right {
+//  display: flex;
+//  justify-content: flex-end;
+//}
+//.flex-center {
+//  display: flex;
+//  justify-content: center;
+//}

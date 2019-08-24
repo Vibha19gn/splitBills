@@ -8,7 +8,8 @@ const AutoSuggest = (props) => {
   const {
     items,
     useProp,
-    handleOnClick
+    handleOnClick,
+    placeholder
   } = props;
 
   const [list, setList] = useState([]);
@@ -59,7 +60,7 @@ const AutoSuggest = (props) => {
     <>
       <FormField
         name="searchTerm"
-        placeholder="Name"
+        placeholder={placeholder}
         handleOnChange={handleOnChange}
       />
       <ListGroup>

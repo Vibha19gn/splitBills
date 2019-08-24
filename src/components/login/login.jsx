@@ -11,7 +11,7 @@ const Login = (props) => {
   } = props;
 
   return (
-    <Row>
+    <>
       {
         isLoggedIn === true ? <Main/> :
           <LoginForm
@@ -19,7 +19,7 @@ const Login = (props) => {
             authenticateUser={authenticateUser}
           />
       }
-    </Row>
+    </>
   );
 }
 

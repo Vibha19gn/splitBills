@@ -137,6 +137,7 @@ const ExpenseModal = (props) => {
         <AutoSuggest
           items={allFriends}
           useProp="name"
+          placeholder="Select friends"
           handleOnClick={handleOnClick}
         />
         {renderSelectedFriendsList()}
