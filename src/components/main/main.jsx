@@ -10,8 +10,8 @@ const Main = (props) => {
     <Row>
       <Col sm={3}>
         <ul>
-          <li><Link to="/friends">Friends</Link></li>
           <li><Link to="/expense">Expenses</Link></li>
+          <li><Link to="/friends">Friends</Link></li>
         </ul>
       </Col>
       <Col sm={6}>
