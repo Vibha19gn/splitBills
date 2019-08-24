@@ -1,9 +1,9 @@
 import React, {useState, useEffect} from 'react';
 import PropTypes from "prop-types";
-import ExpenseModal from "./expense-modal-container";
+import FriendModal from "./friend-modal-container";
 import Badge from "react-bootstrap/Badge";
 
-const AddExpense = (props) => {
+const AddFriend = (props) => {
   const [show, setShow] = useState(false);
 
   const handleOnShow = () => setShow(true);
@@ -14,9 +14,9 @@ const AddExpense = (props) => {
       <Badge
         variant="secondary"
         onClick={handleOnShow}>
-        Add Expense
+        Add Friend
       </Badge>
-      <ExpenseModal
+      <FriendModal
         show={show}
         handleOnClose={handleOnClose}
       />
@@ -24,8 +24,8 @@ const AddExpense = (props) => {
   );
 }
 
-AddExpense.propTypes = {
+AddFriend.propTypes = {
   submitRequest: PropTypes.func
 };
 
-export default AddExpense;
+export default AddFriend;

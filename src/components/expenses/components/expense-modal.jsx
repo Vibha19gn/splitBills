@@ -10,7 +10,7 @@ const ExpenseModal = (props) => {
     handleOnClose,
     currentExpense
   } = props;
-  console.log("currentExpense amma=", currentExpense);
+  console.log("currentExpense =", currentExpense);
   let initialFormState = {id: "", title: "", amount: ""};
   let initialFriends = [];
   const [expense, setExpense] = useState(initialFormState);

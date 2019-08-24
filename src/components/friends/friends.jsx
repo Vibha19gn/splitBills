@@ -2,58 +2,58 @@ import React, {useEffect, useState} from 'react';
 import PropTypes from "prop-types";
 import ListGroup from 'react-bootstrap/ListGroup'
 import Badge from "react-bootstrap/Badge";
-import ExpenseModal from "./components/expense-modal-container";
+import FriendModal from "./components/friend-modal-container";
 
-const Expenses = (props) => {
+const Friends = (props) => {
   const {
     list,
     onDelete
   } = props;
-  const [currentExpense, setCurrentExpense] = useState(null);
-  const [expensesList, setExpensesList] = useState([]);
+  const [currentFriend, setCurrentFriend] = useState(null);
+  const [friendsList, setFriendsList] = useState([]);
   const [show, setShow] = useState(false);
-  console.log("In expenses==", props);
+  console.log("In friends friendId==", props);
 
   useEffect(
     () => {
-      setExpensesList(list);
+      setFriendsList(list);
     },
     [props]
   );
 
   const handleOnClose = () => setShow(false);
 
-  const handleOnEdit = (expenseId) => {
-    console.log("expenseId=", expenseId);
-    const toUpdate = list.find((expense) => {
-      return expense.id === expenseId
+  const handleOnEdit = (friendId) => {
+    console.log("friendId=", friendId);
+    const toUpdate = friendsList.find((friend) => {
+      return friend.id === friendId
     });
-    console.log("toUpdate=", toUpdate);
-    setCurrentExpense(toUpdate);
+    console.log("friendId toUpdate=", toUpdate);
+    setCurrentFriend(toUpdate);
     setShow(true);
   }
 
-  const handleOnDelete = (expenseId) => {
-    onDelete(expenseId);
+  const handleOnDelete = (friendId) => {
+    onDelete(friendId);
   }
 
   const renderExpensesList = () => {
-    return expensesList.map((expense) => {
+    return friendsList.map((friend) => {
       return (
         <ListGroup.Item
-          key={expense.title}
+          key={friend.id}
         >
-          <span>{expense.title}</span>
-          <span>{expense.amount}</span>
+          <span>{friend.name}</span>
+          <span>{friend.email}</span>
           <Badge
             variant="secondary"
             onClick={() =>
-              handleOnEdit(expense.id)
+              handleOnEdit(friend.id)
             }>Edit</Badge>
           <Badge
             variant="secondary"
             onClick={() =>
-              handleOnDelete(expense.id)
+              handleOnDelete(friend.id)
             }>Delete</Badge>
         </ListGroup.Item>
       );
@@ -65,19 +65,19 @@ const Expenses = (props) => {
       <ListGroup>
         {renderExpensesList()}
       </ListGroup>
-      <ExpenseModal
+      <FriendModal
         show={show}
         handleOnClose={handleOnClose}
-        currentExpense={currentExpense}
+        currentFriend={currentFriend}
       />
     </>
   );
 }
 
-Expenses.propTypes = {
+Friends.propTypes = {
   onUpdate: PropTypes.func,
   onDelete: PropTypes.func,
   list: PropTypes.array
 };
 
-export default Expenses;
+export default Friends;

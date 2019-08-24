@@ -4,9 +4,9 @@ import {
   config as loginConfig
 } from "./components/login";
 import {
-  addFriendsReducers,
+  FriendsReducers,
   config as addFriendConfig
-} from "./components/addFriend";
+} from "./components/friends";
 import {
   ExpensesReducers,
   config as ExpensesConfig
@@ -14,6 +14,6 @@ import {
 
 export default combineReducers({
   [loginConfig.STATE_KEY]: loginReducers,
-  [addFriendConfig.STATE_KEY]: addFriendsReducers,
+  [addFriendConfig.STATE_KEY]: FriendsReducers,
   [ExpensesConfig.STATE_KEY]: ExpensesReducers
 });

@@ -1,16 +1,18 @@
 import {connect} from "react-redux";
-import addFriend from "./addFriend";
+import Friends from "./friends";
 import * as actions from "./actions.js";
-//import * as selectors from "./selectors";
+import * as selectors from "./selectors";
 
 const mapStateToProps = (state) => {
-  return {};
+  return {
+    list: selectors.getFriendsList(state)
+  };
 };
 
 const mapDispatchToProp = (dispatch) => {
   return {
-    submitRequest: (args) => {
-      dispatch(actions.submitRequest(args))
+    onDelete: (friendId) => {
+      dispatch(actions.deleteFriend(friendId));
     }
   };
 };
@@ -18,4 +20,4 @@ const mapDispatchToProp = (dispatch) => {
 export default connect(
   mapStateToProps,
   mapDispatchToProp
-)(addFriend);
+)(Friends);

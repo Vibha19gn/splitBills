@@ -1,4 +1,4 @@
-import list from "./add-friend-success";
+import list from "./manage-friends";
 import error from "./add-friend-error";
 
 export {

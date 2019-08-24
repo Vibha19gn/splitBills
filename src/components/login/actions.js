@@ -1,11 +1,8 @@
 import {actionCreator} from "../../utils/action-creators";
 import * as actionTypes from "./action-types";
-import * as config from "./config";
 import * as utils from "./utils";
-import {manageExpense} from "../expenses/actions";
 import {actions as expenseActions} from "../expenses"
-import {actions as friendsActions} from "../addFriend"
-import {addFriendSuccess} from "../addFriend/actions";
+import {actions as friendsActions} from "../friends"
 
 export const authenticateSuccess = actionCreator(
   actionTypes.AUTHENTICATE_USER_SUCCESS, "isLoggedIn");
@@ -30,8 +27,8 @@ export const setUserName = actionCreator(
         expenses,
         friends
       } = data;
+      dispatch(friendsActions.manageFriend(friends));
       dispatch(expenseActions.manageExpense(expenses));
-      dispatch(friendsActions.addFriendSuccess(friends));
     } else {
       dispatch(authenticateFailure(false));
     }

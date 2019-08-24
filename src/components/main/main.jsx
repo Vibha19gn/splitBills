@@ -1,7 +1,7 @@
 import React from 'react';
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import AddFriend from "../addFriend";
+import { AddFriend, Friends} from "../friends";
 import { AddExpense, Expenses} from "../expenses";
 
 const Main = (props) => {
@@ -16,6 +16,9 @@ const Main = (props) => {
       </Col>
       <Col sm={4}>
         <AddFriend/>
+        <Friends/>
+        <br/>
+        <br/>
         <Expenses/>
         <AddExpense/>
       </Col>
