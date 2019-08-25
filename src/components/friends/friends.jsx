@@ -1,8 +1,8 @@
 import React, {useEffect, useState} from 'react';
 import PropTypes from "prop-types";
 import ListGroup from 'react-bootstrap/ListGroup'
-import Badge from "react-bootstrap/Badge";
 import FriendModal from "./components/friend-modal-container";
+import Col from "react-bootstrap/Col";
 
 const Friends = (props) => {
   const {
@@ -12,7 +12,6 @@ const Friends = (props) => {
   const [currentFriend, setCurrentFriend] = useState(null);
   const [friendsList, setFriendsList] = useState([]);
   const [show, setShow] = useState(false);
-  console.log("In friends friendId==", props);
 
   useEffect(
     () => {
@@ -24,11 +23,9 @@ const Friends = (props) => {
   const handleOnClose = () => setShow(false);
 
   const handleOnEdit = (friendId) => {
-    console.log("friendId=", friendId);
     const toUpdate = friendsList.find((friend) => {
       return friend.id === friendId
     });
-    console.log("friendId toUpdate=", toUpdate);
     setCurrentFriend(toUpdate);
     setShow(true);
   }
@@ -37,40 +34,47 @@ const Friends = (props) => {
     onDelete(friendId);
   }
 
-  const renderExpensesList = () => {
+  const renderFriendsList = () => {
     return friendsList.map((friend) => {
       return (
         <ListGroup.Item
           key={friend.id}
         >
-          <span>{friend.name}</span>
-          <span>{friend.email}</span>
-          <Badge
-            variant="secondary"
-            onClick={() =>
-              handleOnEdit(friend.id)
-            }>Edit</Badge>
-          <Badge
-            variant="secondary"
-            onClick={() =>
-              handleOnDelete(friend.id)
-            }>Delete</Badge>
+          <Col sm={3}>{friend.name}</Col>
+          <Col sm={3}>{friend.email}</Col>
+          <Col sm={2}
+               className="list-icon">
+            <i
+              className="fa fas fa-edit"
+              onClick={() =>
+                handleOnEdit(friend.id)
+              }
+            ></i>
+            <i
+              className="fa fas fa-minus-square"
+              onClick={() =>
+                handleOnDelete(friend.id)
+              }
+            ></i>
+          </Col>
         </ListGroup.Item>
       );
     });
   }
 
   return (
-    <>
+    <div
+      className="content-list">
+      <h3>Friends</h3>
       <ListGroup>
-        {renderExpensesList()}
+        {renderFriendsList()}
       </ListGroup>
       <FriendModal
         show={show}
         handleOnClose={handleOnClose}
         currentFriend={currentFriend}
       />
-    </>
+    </div>
   );
 }
 

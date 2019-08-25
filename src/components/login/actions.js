@@ -13,13 +13,13 @@ export const authenticateFailure = actionCreator(
 export const setUserName = actionCreator(
   actionTypes.SET_USERNAME, "userName");
 
-  export function authenticateLogin(payload) {
+export function authenticateLogin(payload) {
   return (dispatch) => {
-    const  {
+    const {
       userName,
       password
     } = payload;
-    if(utils.authenticateUser(userName, password)) {
+    if (utils.authenticateUser(userName, password)) {
       dispatch(authenticateSuccess(true));
       dispatch(setUserName(userName));
       const data = utils.getRequiredDataFromStorage(userName);

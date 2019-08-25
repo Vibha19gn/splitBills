@@ -6,7 +6,6 @@ import {
   Switch,
   Redirect
 } from 'react-router-dom';
-import Container from 'react-bootstrap/Container'
 import Login from "../components/login";
 
 class App extends Component {
@@ -16,12 +15,10 @@ class App extends Component {
 
   render() {
     return (
-      <Container>
-          <Switch>
-            <Route path="/" component={Login}/>
-            <Redirect to="/"/>
-          </Switch>
-      </Container>
+      <Switch>
+        <Route path="/" component={Login}/>
+        <Redirect to="/"/>
+      </Switch>
     );
   }
 }

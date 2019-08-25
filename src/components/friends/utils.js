@@ -1,29 +1,9 @@
 import * as storageUtils from "../../common/storage";
 
-// export const addfriend = (name, email) => {
-//   const friends = storageUtils.getStorageByKey(storageUtils.FRIENDS);
-//   const getFriendsByLoggedInUser = friends["vibha"];
-//   const exists = getFriendsByLoggedInUser.some((friend) => {
-//     return friend.email === email && friend.name === name;
-//   });
-//   if(!exists) {
-//     const payload = {
-//       id : storageUtils.generateID(),
-//       name,
-//       email
-//     };
-//     storageUtils.setStorageByKey(storageUtils.FRIENDS,
-//       {...friends , ...getFriendsByLoggedInUser.push(payload)});
-//     return payload;
-//   } else {
-//     return false;
-//   }
-// }
-
 export const manageFriend = (friend, userName, mode) => {
   const allFriends = storageUtils.getStorageByKey(storageUtils.FRIENDS);
   const getFriendsByLoggedInUser = allFriends[userName];
-  if(mode === "Add") {
+  if (mode === "Add") {
     const {
       email,
       name
@@ -31,14 +11,15 @@ export const manageFriend = (friend, userName, mode) => {
     const exists = getFriendsByLoggedInUser.some((friend) => {
       return friend.email === email && friend.name === name;
     });
-    if(!exists) {
+    if (!exists) {
       friend["id"] = storageUtils.generateID();
       getFriendsByLoggedInUser.push(friend);
-      storageUtils.setStorageByKey(storageUtils.FRIENDS,  getFriendsByLoggedInUser);
+      allFriends[userName] = [...getFriendsByLoggedInUser];
+      storageUtils.setStorageByKey(storageUtils.FRIENDS, allFriends);
       return getFriendsByLoggedInUser;
     }
     return false;
-  } else if(mode === "Edit") {
+  } else if (mode === "Edit") {
     const index = getFriendsByLoggedInUser.findIndex((friendItem) => {
       return friendItem.id === friend.id;
     });

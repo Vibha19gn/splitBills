@@ -1,7 +1,6 @@
 import {actionCreator} from "../../utils/action-creators";
 import * as actionTypes from "./action-types";
 import * as utils from "./utils";
-import * as selectors from "./selectors";
 import {selectors as userSelectors} from "../login";
 
 export const manageExpense = actionCreator(

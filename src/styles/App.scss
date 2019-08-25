@@ -1,22 +1,24 @@
+@import '~font-awesome/css/font-awesome.css';
+
+$font-stack: source sans pro;
 $color-grey: #ced4da;
 
-html {
-  min-height: 100px;
-}
 ul li {
   list-style: none;
 }
 
 .login {
-    width: 30%;
-    transform: translate(-50%, -50%);
-    position: absolute;
-    top: 50%;
-    left: 50%;
+  color: #6c757d;
+  width: 30%;
+  transform: translate(-50%, -50%);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+
   .logo {
     font-size: 25px;
-    font-style: italic;
   }
+
   .login-form {
     border: 1px solid $color-grey;
     padding: 25px;
@@ -24,11 +26,94 @@ ul li {
   }
 }
 
-//.flex-right {
-//  display: flex;
-//  justify-content: flex-end;
-//}
-//.flex-center {
-//  display: flex;
-//  justify-content: center;
-//}
+.navbar {
+  margin-bottom: 0;
+  border-radius: 0;
+}
+
+.main-wrapper {
+  color: #6c757d;
+
+  .content {
+    height: 85vh;
+  }
+
+  .content-list {
+    padding: 5% 18% 5% 18%;
+  }
+
+  .md-col-bg {
+    background-color: #f7f7f7;
+    border: 2px solid #ececec;
+  }
+
+  .sidenav {
+    padding-top: 20px;
+    background-color: #f7f7f7;
+    height: 100%;
+
+    .menu-list {
+      a {
+        color: #6c757d;
+        font-size: 16px;
+        text-decoration: none;
+      }
+
+      a.active {
+        font-size: 18px;
+        font-weight: bold;
+      }
+    }
+  }
+
+  .list-group {
+    .list-group-item {
+      display: flex;
+      justify-content: space-between;
+
+      .list-icon {
+        .fa-edit {
+          padding: 0 8px 0 0;
+        }
+      }
+    }
+  }
+}
+
+
+.auto-suggest {
+  position: relative;
+
+  .form-group {
+    margin-bottom: 0;
+  }
+
+  .list-group {
+    position: absolute;
+    z-index: 1;
+    width: 100%;
+  }
+}
+
+.manage-amount {
+  padding: 10px 0 0 0;
+  color: rgba(26, 26, 26, .6);
+
+  .friends-list {
+    padding: 0;
+
+    .fa-minus-square {
+      padding: 0 0 0 8px;
+    }
+  }
+
+  .person-name {
+    font-weight: bold;
+  }
+}
+
+footer {
+  background-color: #343a40;
+  color: white;
+  padding: 16px 0;
+}

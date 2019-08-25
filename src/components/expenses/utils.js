@@ -3,7 +3,7 @@ import * as storageUtils from "../../common/storage";
 export const manageExpense = (expense, friends, userName, action) => {
   const allExpenses = storageUtils.getStorageByKey(storageUtils.EXPENSES);
   const getExpensesByLoggedInUser = allExpenses[userName];
-  if(action === "Add") {
+  if (action === "Add") {
     const payload = {
       ...expense,
       friends: friends
@@ -11,9 +11,9 @@ export const manageExpense = (expense, friends, userName, action) => {
     payload["id"] = storageUtils.generateID();
     getExpensesByLoggedInUser.push(payload);
     allExpenses[userName] = getExpensesByLoggedInUser;
-    storageUtils.setStorageByKey(storageUtils.EXPENSES,  allExpenses);
+    storageUtils.setStorageByKey(storageUtils.EXPENSES, allExpenses);
     return allExpenses[userName];
-  } else if(action === "Edit") {
+  } else if (action === "Edit") {
     const payload = {
       friends: friends,
       ...expense
@@ -37,4 +37,14 @@ export const deleteExpense = (expenseId, userName) => {
   allExpenses[userName] = list;
   storageUtils.setStorageByKey(storageUtils.EXPENSES, allExpenses);
   return list;
+}
+
+
+export const amountShared = (noOfFriends, amount) => {
+  const sharedAmount = Math.floor(amount / (noOfFriends + 1));
+  const lentAmount = amount - sharedAmount;
+  return {
+    sharedAmount,
+    lentAmount
+  };
 }

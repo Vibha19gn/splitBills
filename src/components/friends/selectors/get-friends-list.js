@@ -6,7 +6,6 @@ export default createSelector(
     getFriends
   ],
   (friends) => {
-    console.log("friends list selctor==", friends);
     const {
       list
     } = friends;

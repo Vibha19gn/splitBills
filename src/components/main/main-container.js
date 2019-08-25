@@ -1,11 +1,11 @@
 import {connect} from "react-redux";
 import Main from "./main";
 
-const mapStateToProps = (state) => {
+const mapStateToProps = () => {
   return {};
 };
 
-const mapDispatchToProp = (dispatch) => {
+const mapDispatchToProp = () => {
   return {};
 };
 

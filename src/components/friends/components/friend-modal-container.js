@@ -1,7 +1,6 @@
 import {connect} from "react-redux";
 import FriendModal from "./friend-modal";
 import * as actions from "../actions.js";
-//import * as selectors from "./selectors";
 
 const mapStateToProps = (state) => {
   return {};

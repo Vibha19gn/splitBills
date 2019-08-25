@@ -2,7 +2,6 @@ import React from 'react';
 import Main from "../main";
 import LoginForm from "./components/login-form";
 import PropTypes from "prop-types";
-import Row from 'react-bootstrap/Row';
 
 const Login = (props) => {
   const {

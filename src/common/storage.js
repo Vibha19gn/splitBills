@@ -15,16 +15,9 @@ export const getAllUsers = () => {
   return JSON.parse(localStorage.getItem(USERS));
 };
 
-export const getFriendsListByLoggedInUser = (username) => {
-  const friends = JSON.parse(localStorage.getItem("friends"));
-  return friends[username] ? friends[username] : [];
-};
-
 export const setStorageByKey = (key, data) => {
-  const friends = JSON.parse(localStorage.getItem("friends"));
   localStorage.setItem(key, JSON.stringify(data));
 };
-
 
 export const generateID = () => {
   return '_' + Math.random().toString(36).substr(2, 9);

@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import ModalDialog from "../../../common/modal";
 import FormField from "../../../common/form-field";
 import AutoSuggest from "../../../common/auto-suggest";
+import {amountShared} from "../utils";
 
 const ExpenseModal = (props) => {
   const {
@@ -11,7 +12,6 @@ const ExpenseModal = (props) => {
     currentExpense,
     friendsOfUser
   } = props;
-  console.log("currentExpense =", currentExpense);
   let initialFormState = {id: "", title: "", amount: ""};
   let initialFriends = [];
   const [allFriends, setAllFriends] = useState([]);
@@ -23,7 +23,7 @@ const ExpenseModal = (props) => {
   useEffect(
     () => {
       setAllFriends([...friendsOfUser]);
-      if(currentExpense) {
+      if (currentExpense) {
         const {
           title,
           amount,
@@ -34,17 +34,18 @@ const ExpenseModal = (props) => {
         setMode("Edit");
         setExpense({...{id: id, title: title, amount: amount}});
         setFriends([...friends]);
+      } else {
+        setFriends([]);
       }
     },
-    [ props ]
+    [props]
   );
 
   const handleOnClick = (friend) => {
-    console.log("friend== handleOnClick", friend);
     const exists = friends.some((frnd) => {
       return frnd.id === friend.id;
     });
-    if(!exists) {
+    if (!exists) {
       friends.push(friend);
       setFriends([...friends]);
     }
@@ -56,7 +57,6 @@ const ExpenseModal = (props) => {
       name,
       value
     } = e.target;
-    console.log("change==", name, value);
     const obj = {};
     obj[name] = value
     setExpense({
@@ -67,7 +67,6 @@ const ExpenseModal = (props) => {
 
 
   const handleOnSubmit = () => {
-    console.log("submit expense==", expense, friends);
     const {
       submitRequest
     } = props;
@@ -75,73 +74,79 @@ const ExpenseModal = (props) => {
     handleOnClose();
   }
 
-  const manageAmount = () => {
-    const {
-      amount
-    } = expense;
-    const sharedAmount =  Math.floor(amount/(friends.length + 1));
-    return sharedAmount;
-  }
-
-  const getLentAmount = () => {
-    const {
-      amount
-    } = expense;
-    const lentAmount = amount -  Math.floor(amount/(friends.length + 1));
-    return lentAmount;
+  const handleOnDelete = (friendId) => {
+    const updateList = friends.filter((friend) => {
+      return friend.id !== friendId;
+    });
+    setFriends([...updateList]);
   }
 
   const renderSelectedFriendsList = () => {
-    console.log("renderSelectedFriendsList==", friends);
-    if(friends.length) {
-      console.log("renderSelectedFriendsList12==", friends, manageAmount());
+    if (friends.length) {
+      const {
+        amount
+      } = expense;
+      const {
+        sharedAmount,
+        lentAmount
+      } = amountShared(friends.length, amount);
       const list = friends.map((friend) => {
         return (
           <li
             key={friend.id}
           >
-            {friend.name} owes you {manageAmount()}
+            <span><span
+              className="person-name">{friend.name}</span> owes you : &#8377;{sharedAmount}</span>
+            <i
+              className="fa fas fa-minus-square"
+              onClick={() =>
+                handleOnDelete(friend.id)
+              }
+            ></i>
           </li>
         );
       });
       return (
-        <>
-        <div>You lent : {getLentAmount()}</div>
-        <ul>{list}</ul>
-        </>
+        <div
+          className="manage-amount">
+          <div><span
+            className="person-name">You</span> lent : &#8377;{lentAmount}</div>
+          <ul
+            className="friends-list">{list}</ul>
+        </div>
       )
     }
     return null;
   }
 
   return (
-      <ModalDialog
-        show={show}
-        handleOnClose={handleOnClose}
-        submitMode={mode}
-        handleOnSubmit={handleOnSubmit}>
-        <FormField
-          label="Title"
-          name="title"
-          value={expense.title}
-          placeholder="Name"
-          handleOnChange={handleOnChange}
-        />
-        <FormField
-          label="Amount"
-          name="amount"
-          value={expense.amount}
-          placeholder="Add Amount"
-          handleOnChange={handleOnChange}
-        />
-        <AutoSuggest
-          items={allFriends}
-          useProp="name"
-          placeholder="Select friends"
-          handleOnClick={handleOnClick}
-        />
-        {renderSelectedFriendsList()}
-      </ModalDialog>
+    <ModalDialog
+      show={show}
+      handleOnClose={handleOnClose}
+      submitMode={mode}
+      handleOnSubmit={handleOnSubmit}>
+      <FormField
+        label="Title"
+        name="title"
+        value={expense.title}
+        placeholder="Name"
+        handleOnChange={handleOnChange}
+      />
+      <FormField
+        label="Amount"
+        name="amount"
+        value={expense.amount}
+        placeholder="Add Amount"
+        handleOnChange={handleOnChange}
+      />
+      <AutoSuggest
+        items={allFriends}
+        useProp="name"
+        placeholder="Select friends"
+        handleOnClick={handleOnClick}
+      />
+      {renderSelectedFriendsList()}
+    </ModalDialog>
   );
 }
 

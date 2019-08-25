@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import PropTypes from "prop-types";
 import ListGroup from 'react-bootstrap/ListGroup'
-import Badge from "react-bootstrap/Badge";
+import Col from "react-bootstrap/Col";
 import ExpenseModal from "./components/expense-modal-container";
 
 const Expenses = (props) => {
@@ -12,7 +12,6 @@ const Expenses = (props) => {
   const [currentExpense, setCurrentExpense] = useState(null);
   const [expensesList, setExpensesList] = useState([]);
   const [show, setShow] = useState(false);
-  console.log("In expenses==", props);
 
   useEffect(
     () => {
@@ -24,11 +23,9 @@ const Expenses = (props) => {
   const handleOnClose = () => setShow(false);
 
   const handleOnEdit = (expenseId) => {
-    console.log("expenseId=", expenseId);
     const toUpdate = list.find((expense) => {
       return expense.id === expenseId
     });
-    console.log("toUpdate=", toUpdate);
     setCurrentExpense(toUpdate);
     setShow(true);
   }
@@ -43,25 +40,30 @@ const Expenses = (props) => {
         <ListGroup.Item
           key={expense.title}
         >
-          <span>{expense.title}</span>
-          <span>{expense.amount}</span>
-          <Badge
-            variant="secondary"
-            onClick={() =>
-              handleOnEdit(expense.id)
-            }>Edit</Badge>
-          <Badge
-            variant="secondary"
-            onClick={() =>
-              handleOnDelete(expense.id)
-            }>Delete</Badge>
+          <Col sm={4}>{expense.title}</Col>
+          <Col sm={2}>&#8377;{expense.amount}</Col>
+          <Col sm={2}
+               className="list-icon">
+            <i
+              className="fa fas fa-edit"
+              onClick={() =>
+                handleOnEdit(expense.id)
+              }></i>
+            <i
+              className="fa fas fa-minus-square"
+              onClick={() =>
+                handleOnDelete(expense.id)
+              }></i>
+          </Col>
         </ListGroup.Item>
       );
     });
   }
 
   return (
-    <>
+    <div
+      className="content-list">
+      <h3>Expenses</h3>
       <ListGroup>
         {renderExpensesList()}
       </ListGroup>
@@ -70,7 +72,7 @@ const Expenses = (props) => {
         handleOnClose={handleOnClose}
         currentExpense={currentExpense}
       />
-    </>
+    </div>
   );
 }
 

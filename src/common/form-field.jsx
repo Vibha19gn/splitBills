@@ -1,10 +1,11 @@
-import React, {useState} from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import Form from "react-bootstrap/Form"
 
 const FormField = (props) => {
   const {
     handleOnChange,
+    handleOnBlur,
     placeholder,
     label,
     value,
@@ -24,13 +25,15 @@ const FormField = (props) => {
         name={name}
         value={value}
         placeholder={placeholder}
-        onChange={handleOnChange}/>
+        onChange={handleOnChange}
+        onBlur={handleOnBlur}/>
     </Form.Group>
   );
 };
 
 FormField.propTypes = {
   handleOnChange: PropTypes.func,
+  handleOnBlur: PropTypes.func,
   placeholder: PropTypes.string,
   name: PropTypes.string
 };

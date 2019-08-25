@@ -15,7 +15,7 @@ const FriendModal = (props) => {
 
   useEffect(
     () => {
-      if(currentFriend) {
+      if (currentFriend) {
         const {
           name,
           email,
@@ -25,7 +25,7 @@ const FriendModal = (props) => {
         setFriend({...{id: id, name, email}});
       }
     },
-    [ props ]
+    [props]
   );
 
   const handleOnChange = (e) => {

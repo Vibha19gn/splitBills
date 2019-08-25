@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {useState} from "react";
 import PropTypes from "prop-types";
 import ListGroup from 'react-bootstrap/ListGroup';
 import FormField from "./form-field";
@@ -14,32 +14,28 @@ const AutoSuggest = (props) => {
 
   const [list, setList] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
+  const [show, setShow] = useState(false);
 
-  /* useEffect(
-     () => {
-       setList(items);
-     },
-     [props]
-   );*/
+
+  const onClick = (item) => {
+    handleOnClick(item);
+    setShow(false);
+  }
 
   const debouncedOnChange = debounce((e) => {
     const {
       value
     } = e.target;
-    //console.log("change==in auto suggest", e,value);
-    //if(value.length > 3) {
     setSearchTerm(value);
     const suggestions = autoSuggestList(value, items);
     setList([...suggestions]);
-    // }
+    setShow(true);
   }, 300);
 
   const handleOnChange = (e) => {
-    //console.log("in filter==", e);
     e.persist();
     debouncedOnChange(e);
   }
-
 
   const renderList = () => {
     return list.map((listItem) => {
@@ -47,7 +43,7 @@ const AutoSuggest = (props) => {
         <ListGroup.Item
           key={listItem.id}
           onClick={() =>
-            handleOnClick(listItem)
+            onClick(listItem)
           }
         >
           <span>{listItem[useProp]}</span>
@@ -57,16 +53,20 @@ const AutoSuggest = (props) => {
   }
 
   return (
-    <>
+    <div
+      className="auto-suggest">
       <FormField
         name="searchTerm"
         placeholder={placeholder}
         handleOnChange={handleOnChange}
       />
-      <ListGroup>
+      {show &&
+      <ListGroup
+        className="auto-suggest-list">
         {renderList()}
       </ListGroup>
-    </>
+      }
+    </div>
   );
 };
 
