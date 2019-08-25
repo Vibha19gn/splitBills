@@ -122,6 +122,7 @@ const ExpenseModal = (props) => {
   return (
     <ModalDialog
       show={show}
+      title="Add Expense"
       handleOnClose={handleOnClose}
       submitMode={mode}
       handleOnSubmit={handleOnSubmit}>

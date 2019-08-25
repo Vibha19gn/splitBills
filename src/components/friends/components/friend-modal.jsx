@@ -53,6 +53,7 @@ const FriendModal = (props) => {
     <>
       <ModalDialog
         show={show}
+        title="Add Friend"
         submitMode={mode}
         handleOnClose={handleOnClose}
         handleOnSubmit={handleOnSubmit}>
