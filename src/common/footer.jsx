@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 
 const Footer = () => {
   return (
-      <footer className=" container-fluid text-center">
+      <footer className="container-fluid text-center">
         <span>Copyright @SplitBills</span>
       </footer>
   );

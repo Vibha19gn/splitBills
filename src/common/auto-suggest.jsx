@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import PropTypes from "prop-types";
 import ListGroup from 'react-bootstrap/ListGroup';
 import FormField from "./form-field";
-import {debounce, autoSuggestList} from "./utils";
+import {debounce, filterListBySearchterm} from "./utils";
 
 const AutoSuggest = (props) => {
   const {
@@ -16,7 +16,6 @@ const AutoSuggest = (props) => {
   const [searchTerm, setSearchTerm] = useState("");
   const [show, setShow] = useState(false);
 
-
   const onClick = (item) => {
     handleOnClick(item);
     setShow(false);
@@ -27,9 +26,11 @@ const AutoSuggest = (props) => {
       value
     } = e.target;
     setSearchTerm(value);
-    const suggestions = autoSuggestList(value, items);
-    setList([...suggestions]);
-    setShow(true);
+    if(value.length > 2) {
+      const suggestions = filterListBySearchterm(items, value, ["name", "email"]);
+      setList([...suggestions]);
+      setShow(true);
+    }
   }, 300);
 
   const handleOnChange = (e) => {

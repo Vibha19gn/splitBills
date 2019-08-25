@@ -2,7 +2,10 @@ import React, {useEffect, useState} from 'react';
 import PropTypes from "prop-types";
 import ListGroup from 'react-bootstrap/ListGroup'
 import Col from "react-bootstrap/Col";
+import FormField from "../../common/form-field";
 import ExpenseModal from "./components/expense-modal-container";
+import {AddExpense} from "../expenses";
+import {debounce, filterListBySearchterm} from "../../common/utils";
 
 const Expenses = (props) => {
   const {
@@ -32,6 +35,24 @@ const Expenses = (props) => {
 
   const handleOnDelete = (expenseId) => {
     onDelete(expenseId);
+  }
+
+  const debouncedOnChange = debounce((e) => {
+    const {
+      value
+    } = e.target;
+    if (value.length > 2) {
+      const filteredList = filterListBySearchterm(expensesList, value, ["title", "amount"]);
+      setExpensesList([...filteredList]);
+    } else if(!value) {
+      setExpensesList([...list]);
+    }
+
+  }, 300);
+
+  const handleOnChange = (e) => {
+    e.persist();
+    debouncedOnChange(e);
   }
 
   const renderExpensesList = () => {
@@ -64,14 +85,26 @@ const Expenses = (props) => {
     <div
       className="content-list">
       <h3>Expenses</h3>
-      <ListGroup>
-        {renderExpensesList()}
-      </ListGroup>
-      <ExpenseModal
-        show={show}
-        handleOnClose={handleOnClose}
-        currentExpense={currentExpense}
-      />
+      {
+        list.length ?
+          <>
+            <div className="d-flex justify-content-end">
+              <FormField
+                name="filterTerm"
+                placeholder="Filter"
+                handleOnChange={handleOnChange}
+              />
+            </div>
+          <ListGroup>
+            {renderExpensesList()}
+          </ListGroup>
+          </>: <AddExpense/>
+      }
+        <ExpenseModal
+          show={show}
+          handleOnClose={handleOnClose}
+          currentExpense={currentExpense}
+        />
     </div>
   );
 }

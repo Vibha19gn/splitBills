@@ -1,8 +1,11 @@
 import React, {useEffect, useState} from 'react';
 import PropTypes from "prop-types";
-import ListGroup from 'react-bootstrap/ListGroup'
+import ListGroup from 'react-bootstrap/ListGroup';
+import FormField from "../../common/form-field";
 import FriendModal from "./components/friend-modal-container";
 import Col from "react-bootstrap/Col";
+import {AddFriend} from "../friends";
+import {debounce, filterListBySearchterm} from "../../common/utils";
 
 const Friends = (props) => {
   const {
@@ -32,6 +35,25 @@ const Friends = (props) => {
 
   const handleOnDelete = (friendId) => {
     onDelete(friendId);
+  }
+
+  const debouncedOnChange = debounce((e) => {
+    const {
+      value
+    } = e.target;
+    if (value.length > 2) {
+      const filteredList = filterListBySearchterm(friendsList, value, ["name", "email"]);
+      setFriendsList([...filteredList]);
+    } else if(!value) {
+      console.log("seriouslyy")
+      setFriendsList([...list]);
+    }
+
+  }, 300);
+
+  const handleOnChange = (e) => {
+    e.persist();
+    debouncedOnChange(e);
   }
 
   const renderFriendsList = () => {
@@ -66,9 +88,21 @@ const Friends = (props) => {
     <div
       className="content-list">
       <h3>Friends</h3>
-      <ListGroup>
-        {renderFriendsList()}
-      </ListGroup>
+      {
+        list.length ?
+          <>
+            <div className="d-flex justify-content-end">
+              <FormField
+                name="filterTerm"
+                placeholder="Filter"
+                handleOnChange={handleOnChange}
+              />
+            </div>
+              <ListGroup>
+                {renderFriendsList()}
+              </ListGroup>
+          </> : <AddFriend/>
+      }
       <FriendModal
         show={show}
         handleOnClose={handleOnClose}

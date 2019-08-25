@@ -11,17 +11,18 @@ export const debounce = (func, delay) => {
 }
 
 
-export const isResultMatch = (searchTerm, values) => {
-  return values.some((value) => {
-    return value.includes(searchTerm.toLowerCase())
+export const isResultMatch = (row, keys, searchTerm) => {
+  return keys.some((key) => {
+    const check = row[key].toLowerCase();
+    return check.includes(searchTerm.toLowerCase())
   });
 };
 
-export const autoSuggestList = (searchTerm, list) => {
-  if (searchTerm.length > 2) {
+export const filterListBySearchterm = (list, searchTerm, keysToCheck = []) => {
+  if(list.length) {
+    const keys = keysToCheck.length ? keysToCheck : Object.keys(list[0]);
     const filteredList = list.filter((item) => {
-      const valuesToCheck = Object.values(item);
-      return isResultMatch(searchTerm, valuesToCheck);
+      return isResultMatch(item, keys, searchTerm);
     });
     return filteredList;
   }
