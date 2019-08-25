@@ -1,4 +1,4 @@
-##SplitBills
+## SplitBills
 
 # react, redux-thunk, sass, webpack, react-bootstrap, font-awesome
 
@@ -20,7 +20,7 @@
 * Auto launch in default browser
 * http://localhost:8080/
 
-##Login
+## Login
 * use the following credentials to login
 * userName = "user1", password =  "pass@123"
 
