@@ -36,6 +36,7 @@ const ExpenseModal = (props) => {
         setExpense({...{id: id, title: title, amount: amount}});
         setFriends([...friends]);
       } else {
+        setExpense({...initialFormState});
         setFriends([]);
       }
     },

@@ -23,6 +23,8 @@ const FriendModal = (props) => {
         } = currentFriend;
         setMode("Edit")
         setFriend({...{id: id, name, email}});
+      } else {
+        setFriend({...initialFormState});
       }
     },
     [props]
