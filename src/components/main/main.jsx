@@ -9,9 +9,14 @@ import Header from "../../common/header";
 import Footer from "../../common/footer";
 
 const Main = (props) => {
+  const {
+    userName
+  } = props;
+
   return (
     <>
-      <Header/>
+      <Header
+        userName={userName}/>
       <div
         className="main-wrapper container-fluid h-100">
         <Row

@@ -22,7 +22,7 @@ export function authenticateLogin(payload) {
     if (utils.authenticateUser(userName, password)) {
       dispatch(authenticateSuccess(true));
       dispatch(setUserName(userName));
-      const data = utils.getRequiredDataFromStorage(userName);
+      const data = utils.getorSetRequiredDataFromStorage(userName);
       const {
         expenses,
         friends

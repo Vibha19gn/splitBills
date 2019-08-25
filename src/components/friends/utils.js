@@ -2,7 +2,7 @@ import * as storageUtils from "../../common/storage";
 
 export const manageFriend = (friend, userName, mode) => {
   const allFriends = storageUtils.getStorageByKey(storageUtils.FRIENDS);
-  const getFriendsByLoggedInUser = allFriends[userName];
+  const getFriendsByLoggedInUser = allFriends[userName] || [];
   if (mode === "Add") {
     const {
       email,
@@ -33,10 +33,14 @@ export const manageFriend = (friend, userName, mode) => {
 
 export const deleteFriend = (friendId, userName) => {
   const allFriends = storageUtils.getStorageByKey(storageUtils.FRIENDS);
-  const list = allFriends[userName].filter((friend) => {
-    return friend.id !== friendId;
-  });
-  allFriends[userName] = list;
-  storageUtils.setStorageByKey(storageUtils.FRIENDS, allFriends);
-  return list;
+  const getFriendsByLoggedInUser = allFriends[userName] || [];
+  if(getFriendsByLoggedInUser.length) {
+    const list = getFriendsByLoggedInUser.filter((friend) => {
+      return friend.id !== friendId;
+    });
+    allFriends[userName] = list;
+    storageUtils.setStorageByKey(storageUtils.FRIENDS, allFriends);
+    return list;
+  }
+  return [];
 }

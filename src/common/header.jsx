@@ -4,7 +4,9 @@ import Navbar from "react-bootstrap/Navbar";
 import Container from "react-bootstrap/Container";
 
 const Header = (props) => {
-  const {} = props;
+  const {
+    userName
+  } = props;
 
   return (
     <header>
@@ -15,7 +17,7 @@ const Header = (props) => {
           <Navbar.Toggle/>
           <Navbar.Collapse className="justify-content-end">
             <Navbar.Text>
-              Hello : Vibha
+              Hello : {userName}
             </Navbar.Text>
           </Navbar.Collapse>
         </Container>

@@ -8,11 +8,11 @@ export const authenticateUser = (userName, password) => {
   return auth ? true : false;
 };
 
-export const getRequiredDataFromStorage = (userName) => {
+export const getorSetRequiredDataFromStorage = (userName) => {
   const expenses = storageUtils.getDataByUserName(storageUtils.EXPENSES, userName);
   const friends = storageUtils.getDataByUserName(storageUtils.FRIENDS, userName);
-  return {
-    expenses,
-    friends
-  }
+   return {
+     expenses,
+     friends
+   }
 }
