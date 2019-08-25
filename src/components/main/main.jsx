@@ -42,10 +42,10 @@ const Main = (props) => {
             <span>Quick links</span>
             <ul>
               <li>
-                <AddFriend/>
+                <AddExpense/>
               </li>
               <li>
-                <AddExpense/>
+                <AddFriend/>
               </li>
             </ul>
           </Col>
