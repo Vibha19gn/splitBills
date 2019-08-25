@@ -6,6 +6,7 @@ const FormField = (props) => {
   const {
     handleOnChange,
     handleOnBlur,
+    handleOnFocus,
     placeholder,
     label,
     value,
@@ -25,6 +26,7 @@ const FormField = (props) => {
         name={name}
         value={value}
         placeholder={placeholder}
+        onFocus={handleOnFocus}
         onChange={handleOnChange}
         onBlur={handleOnBlur}/>
     </Form.Group>

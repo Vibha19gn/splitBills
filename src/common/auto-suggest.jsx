@@ -21,6 +21,12 @@ const AutoSuggest = (props) => {
     setShow(false);
   }
 
+  const handleOnFocus = (e) => {
+    if(searchTerm.length > 2) {
+      setShow(true);
+    }
+  }
+
   const debouncedOnChange = debounce((e) => {
     const {
       value
@@ -30,6 +36,8 @@ const AutoSuggest = (props) => {
       const suggestions = filterListBySearchterm(items, value, ["name", "email"]);
       setList([...suggestions]);
       setShow(true);
+    } else {
+      setShow(false);
     }
   }, 300);
 
@@ -59,9 +67,10 @@ const AutoSuggest = (props) => {
       <FormField
         name="searchTerm"
         placeholder={placeholder}
+        handleOnFocus={handleOnFocus}
         handleOnChange={handleOnChange}
       />
-      {show &&
+      { show &&
       <ListGroup
         className="auto-suggest-list">
         {renderList()}

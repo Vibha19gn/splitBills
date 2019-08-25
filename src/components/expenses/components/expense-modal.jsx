@@ -4,6 +4,7 @@ import ModalDialog from "../../../common/modal";
 import FormField from "../../../common/form-field";
 import AutoSuggest from "../../../common/auto-suggest";
 import {amountShared} from "../utils";
+import {AddFriend} from "../../friends";
 
 const ExpenseModal = (props) => {
   const {
@@ -140,12 +141,14 @@ const ExpenseModal = (props) => {
         placeholder="Add Amount"
         handleOnChange={handleOnChange}
       />
-      <AutoSuggest
-        items={allFriends}
-        useProp="name"
-        placeholder="Select friends"
-        handleOnClick={handleOnClick}
-      />
+      { allFriends.length ?
+        <AutoSuggest
+          items={allFriends}
+          useProp="name"
+          placeholder="Select friends"
+          handleOnClick={handleOnClick}
+        /> :  <AddFriend/>
+      }
       {renderSelectedFriendsList()}
     </ModalDialog>
   );
