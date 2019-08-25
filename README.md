@@ -18,7 +18,7 @@
 ## Run
 * npm run dev
 * Auto launch in default browser
-* http://localhost:8080/
+* http://localhost:8081
 
 ## Login
 * use the following credentials to login
