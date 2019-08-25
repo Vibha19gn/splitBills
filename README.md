@@ -1,13 +1,14 @@
-#SplitBills
+##SplitBills
 
 # react redux-thunk sass webpack react-bootstrap font-awesome
 
 ## Overview
 
-CRUD operation for friend
-CRUD operation for expense
-Can add a friends to a bill nad share amount equally
-Auto suggest friends
+*CRUD operation for friend
+*CRUD operation for expense
+*Can add a friends to a bill nad share amount equally
+*Auto suggest friends
+*Filter lists
 
 ## Usage
 * Download Node at https://nodejs.org/en/download/.Suitable above and version 8
