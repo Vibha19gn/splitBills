@@ -1,6 +1,6 @@
 ##SplitBills
 
-# react redux-thunk sass webpack react-bootstrap font-awesome
+# react, redux-thunk, sass, webpack, react-bootstrap, font-awesome
 
 ## Overview
 
