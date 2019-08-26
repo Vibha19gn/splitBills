@@ -27,7 +27,7 @@
 ## Best view
 * Use Chrome browser
 
-##TODOD
+## TODO
 
 * Form validations
 * Showing success messages on add/update/delete
