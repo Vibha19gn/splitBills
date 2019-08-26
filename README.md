@@ -26,3 +26,10 @@
 
 ## Best view
 * Use Chrome browser
+
+##TODOD
+
+* Form validations
+* Showing success messages on add/update/delete
+* Unit test cases
+* Deployment
