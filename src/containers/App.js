@@ -1,12 +1,7 @@
 import React, {Component} from 'react';
 import '../styles/App.scss';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import {
-  Route,
-  Switch,
-  Redirect
-} from 'react-router-dom';
-import Login from "../components/login";
+import Deployment from "../components/deployment";
 
 class App extends Component {
   constructor(props) {
@@ -15,10 +10,7 @@ class App extends Component {
 
   render() {
     return (
-      <Switch>
-        <Route path="/" component={Login}/>
-        <Redirect to="/"/>
-      </Switch>
+      <Deployment/>
     );
   }
 }
