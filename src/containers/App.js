@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import '../styles/App.scss';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Deployment from "../components/deployment";
+import Customers from "../components/customers";
 
 class App extends Component {
   constructor(props) {
@@ -10,7 +10,7 @@ class App extends Component {
 
   render() {
     return (
-      <Deployment/>
+      <Customers/>
     );
   }
 }

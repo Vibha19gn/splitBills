@@ -11,9 +11,14 @@ import {
   ExpensesReducers,
   config as ExpensesConfig
 } from "./components/expenses";
+import {
+  customersReducers,
+  config as CustomerConfig
+} from "./components/customers";
 
 export default combineReducers({
   [loginConfig.STATE_KEY]: loginReducers,
   [addFriendConfig.STATE_KEY]: FriendsReducers,
-  [ExpensesConfig.STATE_KEY]: ExpensesReducers
+  [ExpensesConfig.STATE_KEY]: ExpensesReducers,
+  [CustomerConfig.STATE_KEY]: customersReducers
 });
