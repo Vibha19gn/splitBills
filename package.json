@@ -19,7 +19,7 @@
     "babel-loader": "^8.0.4",
     "eslint": "^5.15.2",
     "font-awesome-loader": "^1.0.2",
-    "node-sass": "^4.11.0",
+    "node-sass": "^7.0.0",
     "react-hot-loader": "^4.3.11",
     "sass-loader": "^7.1.0",
     "webpack": "^4.30.0",
